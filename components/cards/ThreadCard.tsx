@@ -64,7 +64,7 @@ function ThreadCard({
           <div className='flex w-full flex-col'>
             <Link href={`/profile/${author.id}`} className='w-fit flex gap-2'>
               {author.id === "user_2ZYdjNHJemfKyfRrFKbmNvfm4iB" ? 
-              (<h1 className="flex text-light-1 text-base-semibold flex gap-1">{author.name}{" "} <span className="bg-white w-fit rounded-full"><GoVerified  color="blue" size={19}/></span></h1>):(
+              (<h1 className="flex text-light-1 text-base-semibold flex gap-1">{author.name}{" "} <span><GoVerified  color="blue" size={19}/></span></h1>):(
                <h4 className='cursor-pointer text-base-semibold text-light-1'>
                 {author.name}
               </h4>
