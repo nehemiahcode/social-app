@@ -61,7 +61,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
                 <Avatar 
                   src={currentUserImg}
                   alt="current_user"
-                  size="md"
+                  size="lg"
                   className="rounded-full object-cover"
                 />
               </FormLabel>
