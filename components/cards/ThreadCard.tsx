@@ -67,7 +67,7 @@ function ThreadCard({
               (
                 <h1 className="flex text-light-1 text-base-semibold flex gap-1">{author.name}{" "}
                 
-          <span><GoVerified fill="blue" color="white" size={19}/></span>
+          <MdVerified fill="blue" color="white" size={19}/></span>
                   </h1>
             ):(
                <h4 className='cursor-pointer text-base-semibold text-light-1'>
