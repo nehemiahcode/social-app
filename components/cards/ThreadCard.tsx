@@ -67,9 +67,7 @@ function ThreadCard({
               (
                 <h1 className="flex text-light-1 text-base-semibold flex gap-1">{author.name}{" "}
                 
-          <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-             <path d="M10 0C4.55 0 0 4.55 0 10C0 15.45 4.55 20 10 20C15.45 20 20 15.45 20 10C20 4.55 15.45 0 10 0ZM13.33 8.33L7.94 12.67L4.67 9.4L3.33 10.77L7.94 15.38L13.33 10.77L16.67 13.1L13.33 8.33Z" fill="#33C3FF" rx="3"/>
-          </svg>
+          <span><GoVerified fill="blue" color="white" size={19}/></span>
                   </h1>
             ):(
                <h4 className='cursor-pointer text-base-semibold text-light-1'>
