@@ -66,9 +66,9 @@ function ThreadCard({
             <Link href={`/profile/${author.id}`} className='w-fit flex gap-2'>
               {author.id === "user_2ZYdjNHJemfKyfRrFKbmNvfm4iB" ? 
               (
-                <h1 className="flex text-light-1 text-base-semibold flex gap-1">{author.name}{" "}
+                <h1 className="flex text-light-1 text-base-semibold flex gap-1 items-center">{author.name}{" "}
                 
-          <MdVerified fill="blue" color="white" size={19}/></span>
+            <MdVerified fill="blue" color="white" size={19}/>
                   </h1>
             ):(
                <h4 className='cursor-pointer text-base-semibold text-light-1'>
