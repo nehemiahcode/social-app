@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserValidation } from "@/lib/validation/user";
-import Image from "next/image";
+import {Avatar} from "@nextui-org/react";
 import { Textarea } from "../ui/textarea";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
@@ -111,20 +111,17 @@ export default function AccountProfile({ user, btnTitle }: Props) {
             <FormItem className="flex items-center gap-4">
               <FormLabel className="account-form_image-label">
                 {field.value ? (
-                  <Image
+                  <Avatar 
                     src={field.value}
                     alt="profile photo"
-                    width={96}
-                    height={96}
-                    priority
-                    className=" rounded-full object-contain"
+                    size="lg"
+                    className="rounded-full object-contain"
                   />
                 ) : (
-                  <Image
+                  <Avatar 
                     src={"/assets/profile.svg"}
                     alt="profle photo"
-                    width={24}
-                    height={24}
+                    size="lg"
                     className=" object-contain"
                   />
                 )}
