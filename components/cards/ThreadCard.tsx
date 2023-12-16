@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
+import { GoVerified } from "react-icons/go";
 import { MdVerified } from "react-icons/md";
 import { formatDateString } from "@/lib/utils";
 // import DeleteThread from "../forms/DeleteThread";
@@ -63,7 +64,7 @@ function ThreadCard({
           <div className='flex w-full flex-col'>
             <Link href={`/profile/${author.id}`} className='w-fit flex gap-2'>
               {author.id === "user_2ZYdjNHJemfKyfRrFKbmNvfm4iB" ? 
-              (<h1 className="flex text-light-1 text-base-semibold flex gap-1">{author.name}{" "} <span><MdVerified color="blue" size={19}/></span></h1>):(
+              (<h1 className="flex text-light-1 text-base-semibold flex gap-1">{author.name}{" "} <span className="bg-white w-fit rounded-full"><GoVerified  color="blue" size={19}/></span></h1>):(
                <h4 className='cursor-pointer text-base-semibold text-light-1'>
                 {author.name}
               </h4>
