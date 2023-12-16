@@ -54,7 +54,9 @@ function ThreadCard({
             <Link href={`/profile/${author.id}`} className='relative h-11 w-11'>
               <Avatar
                 src={author.image}
-                {author.id === "user_2ZYdjNHJemfKyfRrFKbmNvfm4iB" && isBordered color="primary"  }
+                {author.id === "user_2ZYdjNHJemfKyfRrFKbmNvfm4iB" ? isBordered : null}
+
+                {author.id === "user_2ZYdjNHJemfKyfRrFKbmNvfm4iB"? color="primary": null}
                 alt='user_community_image'
                 className='cursor-pointer rounded-full h-36 w-36'
                 size="lg"
