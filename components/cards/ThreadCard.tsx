@@ -1,6 +1,7 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
-
+import { MdVerified } from "react-icons/md";
 import { formatDateString } from "@/lib/utils";
 // import DeleteThread from "../forms/DeleteThread";
 
@@ -59,12 +60,15 @@ function ThreadCard({
 
             <div className='thread-card_bar' />
           </div>
-
           <div className='flex w-full flex-col'>
-            <Link href={`/profile/${author.id}`} className='w-fit'>
-              <h4 className='cursor-pointer text-base-semibold text-light-1'>
+            <Link href={`/profile/${author.id}`} className='w-fit flex gap-2'>
+              {author.id === "user_2ZYdjNHJemfKyfRrFKbmNvfm4iB" ? 
+              (<h1 className="flex text-light-1 text-base-semibold">{author.name} <span><MdVerified color="blue" size={19}/></span></h1>):(
+               <h4 className='cursor-pointer text-base-semibold text-light-1'>
                 {author.name}
               </h4>
+              )}
+              
             </Link>
 
             <p className={`${isComment && "mb-10"} mt-2 text-small-regular text-light-2`}>{content}</p>
