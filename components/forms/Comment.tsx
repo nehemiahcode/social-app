@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import Image from "next/image";
+import {Avatar} from "@nextui-org/react"
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -45,7 +46,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
     );
 
     form.reset();
-    alert("hello world")
+    
   };
 
   return (
@@ -57,11 +58,10 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
           render={({ field }) => (
             <FormItem className="flex w-full items-center gap-3">
               <FormLabel>
-                <Image
+                <Avatar 
                   src={currentUserImg}
                   alt="current_user"
-                  width={48}
-                  height={48}
+                  size="md"
                   className="rounded-full object-cover"
                 />
               </FormLabel>
