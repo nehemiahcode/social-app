@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import {Avatar} from "@nextui-org/react"
+import { Avatar } from "@nextui-org/react"
 import { GoVerified } from "react-icons/go";
 import { MdVerified } from "react-icons/md";
 import { formatDateString } from "@/lib/utils";
@@ -45,7 +45,7 @@ function ThreadCard({
   return (
     <article
       className={`flex w-full flex-col rounded-xl ${
-        isComment ? "px-0 xs:px-7" : "bg-dark-2 p-7"
+        isComment ? "px-0 xs:px-4 sm:px-7" : "bg-dark-2 p-4 sm:p-7"
       }`}
     >
       <div className='flex items-start justify-between'>
@@ -68,7 +68,7 @@ function ThreadCard({
               (
                 <h1 className="flex text-light-1 text-base-semibold flex gap-1 items-center">{author.name}{" "}
                 
-            <MdVerified fill="blue" color="white" size={19}/>
+               <MdVerified  color="blue" size={19}/>
                   </h1>
             ):(
                <h4 className='cursor-pointer text-base-semibold text-light-1'>
