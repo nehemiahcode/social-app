@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
+import {Avatar} from "@nextui-org/react"
 import { GoVerified } from "react-icons/go";
 import { MdVerified } from "react-icons/md";
 import { formatDateString } from "@/lib/utils";
@@ -51,11 +52,11 @@ function ThreadCard({
         <div className='flex w-full flex-1 flex-row gap-4'>
           <div className='flex flex-col items-center'>
             <Link href={`/profile/${author.id}`} className='relative h-11 w-11'>
-              <Image
+              <Avatar
                 src={author.image}
                 alt='user_community_image'
-                fill
                 className='cursor-pointer rounded-full'
+                size="lg"
               />
             </Link>
 
@@ -136,12 +137,12 @@ function ThreadCard({
       {!isComment && comments.length > 0 && (
         <div className='ml-1 mt-3 flex items-center gap-2'>
           {comments.slice(0, 2).map((comment, index) => (
-            <Image
+            <Avatar 
               key={index}
               src={comment.author.image}
               alt={`user_${index}`}
-              width={24}
-              height={24}
+              size="sm"
+              
               className={`${index !== 0 && "-ml-5"} rounded-full object-cover`}
             />
           ))}
