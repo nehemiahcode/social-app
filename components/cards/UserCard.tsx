@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import {Avatar} from "@nextui-org/react"
 
 import { Button } from "../ui/button";
 
@@ -22,11 +23,11 @@ function UserCard({ id, name, username, imgUrl, personType }: Props) {
     <article className='user-card'>
       <div className='user-card_avatar'>
         <div className='relative h-12 w-12'>
-          <Image
+          <Avatar
             src={imgUrl}
             alt='user_logo'
-            fill
-            className='rounded-full object-cover'
+            size="lg"
+            className='rounded-full h-[100px] w-[100px] object-cover'
           />
         </div>
 

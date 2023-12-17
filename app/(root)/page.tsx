@@ -14,7 +14,8 @@ export default async function Home() {
   console.log(result);
   return (
     <>
-      <div className="h-text text-left">Home</div>
+      <div className="h-text text-left text-white">Home</div>
+      <p className="text-left text-white text-sm py-2">Get started by creating and letting others know about it today.</p>
       <section className="mt-9 flex flex-col gap-10">
         {result.posts.length === 0 ? (
           <p className="no-result">No threads found</p>

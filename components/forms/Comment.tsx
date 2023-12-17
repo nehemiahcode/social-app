@@ -69,6 +69,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
                 <Input
                   type="text"
                   {...field}
+                  required
                   placeholder="Comment..."
                   className="no-focus text-light-1 outline-none"
                 />
