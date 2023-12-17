@@ -139,14 +139,14 @@ export default function AccountProfile({ user, btnTitle }: Props) {
                       src={field.value}
                       alt="profile photo"
                       size="lg"
-                      className="rounded-full object-contain"
+                      className="rounded-full h-full w-full object-contain"
                     />
                   ) : (
                     <Avatar
                       src={"/assets/profile.svg"}
                       alt="profle photo"
                       size="lg"
-                      className=" object-contain"
+                      className=" h-full w-full object-contain"
                     />
                   )}
                 </FormLabel>

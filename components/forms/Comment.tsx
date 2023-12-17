@@ -50,7 +50,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
     toast.success("comment created");
     navigator.vibrate([60, 30]);
     setTimeout(() => {
-      setLoading(true);
+      setLoading(false);
       form.reset();
     }, 3000);
   };
