@@ -49,9 +49,6 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
     setLoading(true);
     toast.success("comment created");
     navigator.vibrate([60, 30]);
-    setTimeout(() => {
-      router.refresh();
-    }, 3000);
   };
 
   return (
@@ -107,7 +104,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
             type="submit"
             className="comment-form_btn"
           >
-            Reply
+          {loading ? "Replying..." : "Reply"}
           </Button>
         </form>
       </Form>

@@ -213,6 +213,8 @@ export default function AccountProfile({ user, btnTitle }: Props) {
                 <FormControl className="flex-1 text-base-semibold text-gray-200">
                   <Textarea
                     rows={10}
+                    maxLength={150}
+                    minLength={2}
                     className="account-form_input no-focus"
                     {...field}
                   />
@@ -226,7 +228,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
             type="submit"
             className=" rounded bg-purple"
           >
-            Submit
+            {loading ? "Updating...." : "Update"}
           </Button>
         </form>
       </Form>

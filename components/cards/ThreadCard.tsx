@@ -77,7 +77,7 @@ function ThreadCard({
             <Link href={`/profile/${author.id}`} className="w-fit flex gap-2">
               {author.id === "user_2ZYdjNHJemfKyfRrFKbmNvfm4iB" ? (
                 <h1 className="flex text-light-1 text-base-semibold  gap-1 items-center">
-                  {author.name} <Image width="48" height="48" src="https://img.icons8.com/fluency/48/verified-badge--v1.png" alt="verified-badge--v1"/>
+                  {author.name} <RiVerifiedBadgeFill  color="blue" size={19} />
                 </h1>
               ) : (
                 <h4 className="cursor-pointer text-base-semibold text-light-1">

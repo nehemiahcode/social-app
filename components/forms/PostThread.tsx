@@ -80,7 +80,6 @@ function PostThread({ userId }: { userId: string }) {
             style: {
               background: "rgb(135, 126, 255)",
               color: "white",
-            
             },
           },
           error: {
@@ -103,7 +102,7 @@ function PostThread({ userId }: { userId: string }) {
             render={({ field }) => (
               <FormItem className="flex w-full flex-col gap-3">
                 <FormLabel className="text-base-semibold text-light-2">
-                  Content
+                  Content of your post.
                 </FormLabel>
                 <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
                   <Textarea {...field} className="h-[320px]" />
@@ -113,8 +112,12 @@ function PostThread({ userId }: { userId: string }) {
             )}
           />
 
-          <Button type="submit" isLoading={loading} className=" rounded bg-primary-500">
-            Post Thread
+          <Button
+            type="submit"
+            isLoading={loading}
+            className=" rounded bg-primary-500"
+          >
+            {loading ? "posting..." : " Create post"}
           </Button>
         </form>
       </Form>
