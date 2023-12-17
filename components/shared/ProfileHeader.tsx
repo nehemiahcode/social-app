@@ -1,4 +1,4 @@
-import { Avatar } from "@nextui-org/react";
+import {Avatar} from "@nextui-org/react"
 
 interface Props {
   accountId: string;
@@ -31,16 +31,9 @@ const ProfileHeader = ({
           </div>
 
           <div className="flex-1">
-            {authUserId === "657db9e88f29779e7a3621ea" ? (
-              <h1 className="text-left text-heading3-bold text-light-1">
-                This User
-              </h1>
-            ) : (
-              <h1 className="text-left text-heading3-bold text-light-1">
-                {name}
-              </h1>
-            )}
-
+            <h1 className="text-left text-heading3-bold text-light-1">
+              {name}
+            </h1>
             <p className="text-base-medium text-gray-1">@{username}</p>
           </div>
         </div>
@@ -53,4 +46,4 @@ const ProfileHeader = ({
   );
 };
 
-export default ProfileHeader;
+export default ProfileHeader

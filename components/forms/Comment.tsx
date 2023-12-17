@@ -45,10 +45,14 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
       JSON.parse(currentUserId),
       pathname
     );
-    form.reset();
+
     setLoading(true);
     toast.success("comment created");
     navigator.vibrate([60, 30]);
+    setTimeout(() => {
+      setLoading(true);
+      form.reset();
+    }, 3000);
   };
 
   return (
@@ -57,9 +61,8 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
         toastOptions={{
           success: {
             style: {
-                background: "rgb(135, 126, 255)",
+              background: "rgb(135, 126, 255)",
               color: "white",
-           
             },
           },
           error: {
@@ -104,7 +107,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
             type="submit"
             className="comment-form_btn"
           >
-          {loading ? "Replying..." : "Reply"}
+            {loading ? "Replying..." : "Reply"}
           </Button>
         </form>
       </Form>
