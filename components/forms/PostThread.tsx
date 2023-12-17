@@ -68,6 +68,7 @@ function PostThread({ userId }: { userId: string }) {
     toast.success("post created");
     navigator.vibrate([60, 30]);
     setTimeout(() => {
+        setLoading(false);
       router.push("/");
     }, 3000);
   };
