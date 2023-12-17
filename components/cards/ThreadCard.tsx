@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Avatar } from "@nextui-org/react";
-import { GoVerified } from "react-icons/go";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { MdVerified } from "react-icons/md";
 import { formatDateString } from "@/lib/utils";
 // import DeleteThread from "../forms/DeleteThread";
@@ -58,14 +58,14 @@ function ThreadCard({
                   isBordered
                   color="primary"
                   alt="user_community_image"
-                  className="cursor-pointer rounded-full h-36 w-36"
+                  className="cursor-pointer rounded-ful"
                   size="lg"
                 />
               ) : (
                 <Avatar
                   src={author.image}
                   alt="user_community_image"
-                  className="cursor-pointer rounded-full h-36 w-36"
+                  className="cursor-pointer rounded-full "
                   size="lg"
                 />
               )}
@@ -77,7 +77,7 @@ function ThreadCard({
             <Link href={`/profile/${author.id}`} className="w-fit flex gap-2">
               {author.id === "user_2ZYdjNHJemfKyfRrFKbmNvfm4iB" ? (
                 <h1 className="flex text-light-1 text-base-semibold  gap-1 items-center">
-                  {author.name} <MdVerified color="blue" size={19} />
+                  {author.name} <Image width="48" height="48" src="https://img.icons8.com/fluency/48/verified-badge--v1.png" alt="verified-badge--v1"/>
                 </h1>
               ) : (
                 <h4 className="cursor-pointer text-base-semibold text-light-1">

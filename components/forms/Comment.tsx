@@ -1,12 +1,11 @@
 "use client";
 
 import { z } from "zod";
-import Image from "next/image";
-import {Avatar} from "@nextui-org/react"
+import { Avatar, Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import toast, { Toaster } from "react-hot-toast";
 import {
   Form,
   FormControl,
@@ -16,10 +15,10 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 
 import { CommentValidation } from "@/lib/validation/thread";
 import { addCommentToThread } from "@/lib/actions/thread.actions";
+import { useState } from "react";
 
 interface Props {
   threadId: string;
@@ -28,7 +27,9 @@ interface Props {
 }
 
 function Comment({ threadId, currentUserImg, currentUserId }: Props) {
+  const [loading, setLoading] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof CommentValidation>>({
     resolver: zodResolver(CommentValidation),
@@ -44,45 +45,73 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
       JSON.parse(currentUserId),
       pathname
     );
-
     form.reset();
-    
+    setLoading(true);
+    toast.success("comment created");
+    navigator.vibrate([60, 30]);
+    setTimeout(() => {
+      router.refresh();
+    }, 3000);
   };
 
   return (
-    <Form {...form}>
-      <form className="comment-form" onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="thread"
-          render={({ field }) => (
-            <FormItem className="flex w-full items-center gap-3">
-              <FormLabel>
-                <Avatar 
-                  src={currentUserImg}
-                  alt="current_user"
-                  size="lg"
-                  className="rounded-full object-cover"
-                />
-              </FormLabel>
-              <FormControl className="border-none bg-transparent">
-                <Input
-                  type="text"
-                  {...field}
-                  required
-                  placeholder="Comment..."
-                  className="no-focus text-light-1 outline-none"
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
+    <>
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+                background: "rgb(135, 126, 255)",
+              color: "white",
+           
+            },
+          },
+          error: {
+            style: {
+              background: "red",
+              color: "white",
+            },
+          },
+        }}
+      />
 
-        <Button type="submit" className="comment-form_btn">
-          Reply
-        </Button>
-      </form>
-    </Form>
+      <Form {...form}>
+        <form className="comment-form" onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name="thread"
+            render={({ field }) => (
+              <FormItem className="flex w-full items-center gap-3">
+                <FormLabel>
+                  <Avatar
+                    src={currentUserImg}
+                    alt="current_user"
+                    size="lg"
+                    className="rounded-full object-cover"
+                  />
+                </FormLabel>
+                <FormControl className="border-none bg-transparent">
+                  <Input
+                    type="text"
+                    {...field}
+                    required
+                    placeholder="Comment..."
+                    className="no-focus text-light-1 outline-none"
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          <Button
+            isLoading={loading}
+            type="submit"
+            className="comment-form_btn"
+          >
+            Reply
+          </Button>
+        </form>
+      </Form>
+    </>
   );
 }
 

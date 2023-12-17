@@ -1,4 +1,5 @@
 import Image from "next/image";
+import {Avatar} from "@nextui-org/react"
 
 interface Props {
   accountId: string;
@@ -22,11 +23,11 @@ const ProfileHeader = ({
       <div className="flex items-center justofy-between">
         <div className="flex items-center gap-3">
           <div className="relative h-20 w-20 object-cover">
-            <Image
+            <Avatar
               src={imgUrl}
-              fill
+              size="lg"
               alt="profile Image"
-              className=" rounded-full object-cover shadow-2xl"
+              className=" rounded-full h-36 w-36 object-cover shadow-2xl"
             />
           </div>
 

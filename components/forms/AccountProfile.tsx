@@ -1,20 +1,21 @@
 "use client";
 import React, { ChangeEvent, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@nextui-org/react";
+import toast, { Toaster } from "react-hot-toast";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import * as z from "zod";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserValidation } from "@/lib/validation/user";
-import {Avatar} from "@nextui-org/react";
+import { Avatar } from "@nextui-org/react";
 import { Textarea } from "../ui/textarea";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
@@ -36,6 +37,7 @@ interface Props {
 export default function AccountProfile({ user, btnTitle }: Props) {
   const { startUpload } = useUploadThing("media");
   const [files, setFiles] = useState<File[]>([]);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const form = useForm({
@@ -91,6 +93,9 @@ export default function AccountProfile({ user, btnTitle }: Props) {
       bio: values.bio,
       image: values.profile_photo,
     });
+    toast.success("Account updated");
+    setLoading(true);
+    navigator.vibrate([60, 30]);
     if (pathname === "/profile/edit") {
       router.back();
     } else {
@@ -99,110 +104,132 @@ export default function AccountProfile({ user, btnTitle }: Props) {
   };
 
   return (
-    <Form {...form}>
-      <form
-        className="flex flex-col justify-start gap-10"
-        onSubmit={form.handleSubmit(onSubmit)}
-      >
-        <FormField
-          control={form.control}
-          name="profile_photo"
-          render={({ field }) => (
-            <FormItem className="flex items-center gap-4">
-              <FormLabel className="account-form_image-label">
-                {field.value ? (
-                  <Avatar 
-                    src={field.value}
-                    alt="profile photo"
-                    size="lg"
-                    className="rounded-full object-contain"
-                  />
-                ) : (
-                  <Avatar 
-                    src={"/assets/profile.svg"}
-                    alt="profle photo"
-                    size="lg"
-                    className=" object-contain"
-                  />
-                )}
-              </FormLabel>
-              <FormControl className="flex-1 text-base-semibold text-gray-200">
-                <Input
-                  type="file"
-                  accept="image/*"
-                  placeholder="Upload a photo"
-                  className="account-form_image-input"
-                  onChange={(e) => handleImage(e, field.onChange)}
-                />
-    
-              </FormControl>
-              <FormMessage/>
-            </FormItem>
-          )}
-        />
+    <>
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+                background: "rgb(135, 126, 255)",
+              color: "white",
+             
+            },
+          },
+          error: {
+            style: {
+              background: "red",
+              color: "white",
+            },
+          },
+        }}
+      />
 
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem className="flex flex-col  gap-3 w-full">
-              <FormLabel className="text-base-semibold text-light-2">
-                Name
-              </FormLabel>
-              <FormControl className="flex-1 text-base-semibold text-gray-200">
-                <Input
-                  type="text"
-                  className="account-form_input no-focus"
-                  {...field}
-                />
-                
-              </FormControl>
-              <FormMessage/>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem className="flex flex-col  gap-3 w-full">
-              <FormLabel className="text-base-semibold text-light-2">
-                Username
-              </FormLabel>
-              <FormControl className="flex-1 text-base-semibold text-gray-200">
-                <Input
-                  type="text"
-                  className="account-form_input no-focus"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage/>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="bio"
-          render={({ field }) => (
-            <FormItem className="flex flex-col  gap-3 w-full">
-              <FormLabel className="text-base-semibold text-light-2">
-                Bio
-              </FormLabel>
-              <FormControl className="flex-1 text-base-semibold text-gray-200">
-                <Textarea
-                  rows={10}
-                  className="account-form_input no-focus"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage/>
-            </FormItem>
-          )}
-        />
-        <Button type="submit" className=" bg-purple">
-          Submit
-        </Button>
-      </form>
-    </Form>
+      <Form {...form}>
+        <form
+          className="flex flex-col justify-start gap-10"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <FormField
+            control={form.control}
+            name="profile_photo"
+            render={({ field }) => (
+              <FormItem className="flex items-center gap-4">
+                <FormLabel className="account-form_image-label">
+                  {field.value ? (
+                    <Avatar
+                      src={field.value}
+                      alt="profile photo"
+                      size="lg"
+                      className="rounded-full object-contain"
+                    />
+                  ) : (
+                    <Avatar
+                      src={"/assets/profile.svg"}
+                      alt="profle photo"
+                      size="lg"
+                      className=" object-contain"
+                    />
+                  )}
+                </FormLabel>
+                <FormControl className="flex-1 text-base-semibold text-gray-200">
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    placeholder="Upload a photo"
+                    className="account-form_image-input"
+                    onChange={(e) => handleImage(e, field.onChange)}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="flex flex-col  gap-3 w-full">
+                <FormLabel className="text-base-semibold text-light-2">
+                  Name
+                </FormLabel>
+                <FormControl className="flex-1 text-base-semibold text-gray-200">
+                  <Input
+                    type="text"
+                    className="account-form_input no-focus"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem className="flex flex-col  gap-3 w-full">
+                <FormLabel className="text-base-semibold text-light-2">
+                  Username
+                </FormLabel>
+                <FormControl className="flex-1 text-base-semibold text-gray-200">
+                  <Input
+                    type="text"
+                    className="account-form_input no-focus"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="bio"
+            render={({ field }) => (
+              <FormItem className="flex flex-col  gap-3 w-full">
+                <FormLabel className="text-base-semibold text-light-2">
+                  Bio
+                </FormLabel>
+                <FormControl className="flex-1 text-base-semibold text-gray-200">
+                  <Textarea
+                    rows={10}
+                    className="account-form_input no-focus"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            isLoading={loading}
+            type="submit"
+            className=" rounded bg-purple"
+          >
+            Submit
+          </Button>
+        </form>
+      </Form>
+    </>
   );
 }

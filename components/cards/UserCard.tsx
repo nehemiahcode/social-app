@@ -1,6 +1,4 @@
 "use client";
-
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {Avatar} from "@nextui-org/react"
 
@@ -27,7 +25,7 @@ function UserCard({ id, name, username, imgUrl, personType }: Props) {
             src={imgUrl}
             alt='user_logo'
             size="lg"
-            className='rounded-full h-[100px] w-[100px] object-cover'
+            className='rounded-full object-cover'
           />
         </div>
 
